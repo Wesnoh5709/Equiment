@@ -3,7 +3,7 @@ from odoo import models, fields, api
 class MaintenanceEquipment(models.Model):
     _inherit = 'maintenance.equipment'
 
-    equipment_tag = fields.Char(string="Equipment tAG")
+    equipment_tag = fields.Char(string="Equipment TAG")
     model_name = fields.Char(string="Model")
 
     location_id = fields.Many2one('stock.location', string="Location")
