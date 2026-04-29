@@ -1,0 +1,30 @@
+<odoo>
+    <record id="view_equipment_form_inherit_asset" model="ir.ui.view">
+        <field name="name">equipment.form.asset.details</field>
+        <field name="model">maintenance.equipment</field>
+        <field name="inherit_id" ref="maintenance.hr_equipment_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[last()]" position="after">
+                <page string="Asset Details">
+                    <group>
+                        <group string="General">
+                            <field name="equipment_tag"/>
+                            <field name="model_name"/>
+                        </group>
+                        <group string="Location">
+                            <field name="location_id"/>
+                            <field name="building_id"/>
+                            <field name="zone_id"/>
+                            <field name="floor"/>
+                            <field name="room"/>
+                        </group>
+                    </group>
+                    <group string="Identification">
+                        <field name="asset_code" readonly="1"/>
+                        <field name="digit_count" readonly="1"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

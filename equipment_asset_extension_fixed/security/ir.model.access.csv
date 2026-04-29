@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_building_master,building.master,model_building_master,,1,1,1,1
+access_zone_master,zone.master,model_zone_master,,1,1,1,1
