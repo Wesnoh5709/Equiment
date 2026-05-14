@@ -1,7 +1,7 @@
 {
     'name': 'Equipment Asset Extension',
     'version': '1.1',
-    'summary': 'Extend Equipment with Asset Details (Fixed for Odoo 19)',
+    'summary': 'Extend Equipment with Asset Details (Fixed for Odoo 19V1)',
     'depends': ['maintenance', 'stock'],
     'data': [
         'security/ir.model.access.csv',
