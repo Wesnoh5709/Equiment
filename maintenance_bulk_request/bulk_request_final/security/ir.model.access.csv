@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_maintenance_bulk_request_wizard_manager,maintenance.bulk.request.wizard (manager),model_maintenance_bulk_request_wizard,maintenance.group_equipment_manager,1,1,1,1
+access_maintenance_bulk_request_wizard_user,maintenance.bulk.request.wizard (user),model_maintenance_bulk_request_wizard,base.group_user,1,1,1,0

@@ -1,0 +1,23 @@
+<odoo>
+    <record id="view_building_list" model="ir.ui.view">
+        <field name="name">building.list</field>
+        <field name="model">building.master</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_building_form" model="ir.ui.view">
+        <field name="name">building.form</field>
+        <field name="model">building.master</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <field name="name"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

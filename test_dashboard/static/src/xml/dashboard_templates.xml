@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates>
+    <t t-name="test_dashboard.MaintenanceDashboard">
+        <div class="mnt_dashboard container-fluid" style="overflow:auto;max-height:100%;background:#f4f6fb;min-height:100vh;padding-bottom:40px;">
+
+            <!-- ══ HEADER ══════════════════════════════════════════════════════ -->
+            <div class="mnt_header row align-items-center py-3 px-3 mb-2">
+                <div class="col-12 col-md-8">
+                    <h2 class="mnt_title mb-0">
+                        <i class="fa fa-wrench me-2" style="color:#4361ee;"/>
+                        Maintenance Dashboard
+                    </h2>
+                </div>
+            </div>
+
+            <!-- ══ SEARCH / FILTER PANEL ═══════════════════════════════════════ -->
+            <div class="mnt_search_panel card mx-3 mb-4 p-3">
+                <div class="row g-2">
+
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                        <label class="mnt_label">Maintenance Team</label>
+                        <select class="form-select mnt_select" t-model="state.f_team_id">
+                            <option value="">— All Teams —</option>
+                            <t t-foreach="state.opt_teams" t-as="team" t-key="team.id">
+                                <option t-att-value="team.id"><t t-esc="team.name"/></option>
+                            </t>
+                        </select>
+                    </div>
+
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                        <label class="mnt_label">Equipment</label>
+                        <select class="form-select mnt_select" t-model="state.f_equipment_id">
+                            <option value="">— All Equipment —</option>
+                            <t t-foreach="state.opt_equipment" t-as="eq" t-key="eq.id">
+                                <option t-att-value="eq.id"><t t-esc="eq.name"/></option>
+                            </t>
+                        </select>
+                    </div>
+
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                        <label class="mnt_label">Date From</label>
+                        <input type="date" class="form-control mnt_input" t-model="state.f_date_from"/>
+                    </div>
+
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                        <label class="mnt_label">Date To</label>
+                        <input type="date" class="form-control mnt_input" t-model="state.f_date_to"/>
+                    </div>
+
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                        <label class="mnt_label">Status</label>
+                        <select class="form-select mnt_select" t-model="state.f_stage_id">
+                            <option value="">— All Statuses —</option>
+                            <t t-foreach="state.opt_stages" t-as="st" t-key="st.id">
+                                <option t-att-value="st.id"><t t-esc="st.name"/></option>
+                            </t>
+                        </select>
+                    </div>
+
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                        <label class="mnt_label">Location</label>
+                        <select class="form-select mnt_select" t-model="state.f_location">
+                            <option value="">— All Locations —</option>
+                            <t t-foreach="state.opt_locations" t-as="loc" t-key="loc">
+                                <option t-att-value="loc"><t t-esc="loc"/></option>
+                            </t>
+                        </select>
+                    </div>
+
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                        <label class="mnt_label">Zone</label>
+                        <select class="form-select mnt_select" t-model="state.f_zone">
+                            <option value="">— All Zones —</option>
+                            <t t-foreach="state.opt_zones" t-as="z" t-key="z">
+                                <option t-att-value="z"><t t-esc="z"/></option>
+                            </t>
+                        </select>
+                    </div>
+
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                        <label class="mnt_label">Building</label>
+                        <select class="form-select mnt_select" t-model="state.f_building">
+                            <option value="">— All Buildings —</option>
+                            <t t-foreach="state.opt_buildings" t-as="b" t-key="b">
+                                <option t-att-value="b"><t t-esc="b"/></option>
+                            </t>
+                        </select>
+                    </div>
+
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                        <label class="mnt_label">Floor</label>
+                        <select class="form-select mnt_select" t-model="state.f_floor">
+                            <option value="">— All Floors —</option>
+                            <t t-foreach="state.opt_floors" t-as="fl" t-key="fl">
+                                <option t-att-value="fl"><t t-esc="fl"/></option>
+                            </t>
+                        </select>
+                    </div>
+
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                        <label class="mnt_label">Room</label>
+                        <select class="form-select mnt_select" t-model="state.f_room">
+                            <option value="">— All Rooms —</option>
+                            <t t-foreach="state.opt_rooms" t-as="rm" t-key="rm">
+                                <option t-att-value="rm"><t t-esc="rm"/></option>
+                            </t>
+                        </select>
+                    </div>
+
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                        <label class="mnt_label">Tag</label>
+                        <select class="form-select mnt_select" t-model="state.f_tag_id">
+                            <option value="">— All Tags —</option>
+                            <t t-foreach="state.opt_tags" t-as="tag" t-key="tag.id">
+                                <option t-att-value="tag.id"><t t-esc="tag.name"/></option>
+                            </t>
+                        </select>
+                    </div>
+
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex align-items-end gap-2">
+                        <button class="btn mnt_btn_search flex-fill" t-on-click="onSearch">
+                            <i class="fa fa-search me-1"/>Search
+                        </button>
+                        <button class="btn mnt_btn_reset flex-fill" t-on-click="onReset">
+                            <i class="fa fa-refresh me-1"/>Reset
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- ══ KPI TILES ════════════════════════════════════════════════════ -->
+            <div class="row mx-3 g-3 mb-4">
+
+                <div class="col-12 col-sm-6 col-xl-3">
+                    <div class="mnt_tile mnt_tile--blue" t-on-click="onClickEquipment">
+                        <div class="mnt_tile__icon"><i class="fa fa-cogs"/></div>
+                        <div class="mnt_tile__body">
+                            <div class="mnt_tile__value"><t t-esc="state.total_equipment"/></div>
+                            <div class="mnt_tile__label">Total Equipment</div>
+                        </div>
+                        <i class="fa fa-chevron-right mnt_tile__arrow"/>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-xl-3">
+                    <div class="mnt_tile mnt_tile--green" t-on-click="onClickMaintenance">
+                        <div class="mnt_tile__icon"><i class="fa fa-wrench"/></div>
+                        <div class="mnt_tile__body">
+                            <div class="mnt_tile__value"><t t-esc="state.total_maintenance"/></div>
+                            <div class="mnt_tile__label">Total Maintenance</div>
+                        </div>
+                        <i class="fa fa-chevron-right mnt_tile__arrow"/>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-xl-3">
+                    <div class="mnt_tile mnt_tile--orange" t-on-click="onClickToday">
+                        <div class="mnt_tile__icon"><i class="fa fa-calendar-check-o"/></div>
+                        <div class="mnt_tile__body">
+                            <div class="mnt_tile__value"><t t-esc="state.maintenance_today"/></div>
+                            <div class="mnt_tile__label">Maintenance Today</div>
+                        </div>
+                        <i class="fa fa-chevron-right mnt_tile__arrow"/>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-xl-3">
+                    <div class="mnt_tile mnt_tile--red" t-on-click="onClickOverdue">
+                        <div class="mnt_tile__icon"><i class="fa fa-exclamation-triangle"/></div>
+                        <div class="mnt_tile__body">
+                            <div class="mnt_tile__value"><t t-esc="state.overdue_requests"/></div>
+                            <div class="mnt_tile__label">Overdue Requests</div>
+                        </div>
+                        <i class="fa fa-chevron-right mnt_tile__arrow"/>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ══ CHARTS ════════════════════════════════════════════════════════ -->
+            <div class="row mx-3 g-3">
+
+                <div class="col-12 col-lg-6">
+                    <div class="mnt_chart_card">
+                        <div class="mnt_chart_card__header">
+                            <i class="fa fa-bar-chart me-2" style="color:#4361ee;"/>
+                            Requests by Stage
+                        </div>
+                        <div class="mnt_chart_card__body">
+                            <canvas t-ref="requests_by_stage"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-6">
+                    <div class="mnt_chart_card">
+                        <div class="mnt_chart_card__header">
+                            <i class="fa fa-bar-chart me-2" style="color:#06d6a0;"/>
+                            Requests by Equipment (Top 10)
+                        </div>
+                        <div class="mnt_chart_card__body">
+                            <canvas t-ref="requests_by_equipment"/>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </t>
+</templates>
