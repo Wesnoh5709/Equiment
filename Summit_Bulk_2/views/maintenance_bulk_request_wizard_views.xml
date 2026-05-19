@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ── Wizard form view ──────────────────────────────────────────────── -->
+    <record id="maintenance_bulk_request_wizard_view_form" model="ir.ui.view">
+        <field name="name">maintenance.bulk.request.wizard.form</field>
+        <field name="model">maintenance.bulk.request.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Maintenance Bulk Request">
+                <sheet>
+
+                    <div class="oe_title mb-3">
+                        <h1>Maintenance Bulk Request</h1>
+                        <p class="text-muted" style="font-size:13px;">
+                            Review the selected equipment, fill in the request
+                            details, then click
+                            <strong>Create Requests</strong>.
+                        </p>
+                    </div>
+
+                    <!-- ── STEP 1 : Selected Equipment ───────────────────── -->
+                    <separator string="Step 1 — Selected Equipment"/>
+
+                    <div class="alert alert-info"
+                         invisible="equipment_count != 0"
+                         role="alert">
+                        No equipment selected. Go to Maintenance Equipment list,
+                        select one or more records, then run
+                        <strong>Action → Bulk Maintenance Request</strong>.
+                    </div>
+
+                    <field name="equipment_ids"
+                           nolabel="1"
+                           invisible="equipment_count == 0">
+                        <list create="0" delete="0" edit="0"
+                              string="Matching Equipment">
+                            <field name="name" string="Equipment Name"/>
+                            <field name="location_id"/>
+                            <field name="building_id"/>
+                            <field name="zone_id"/>
+                            <field name="floor"/>
+                            <field name="room"/>
+                            <field name="model_name" string="Model"/>
+                            <field name="category_id"/>
+                            <field name="maintenance_team_id"/>
+                        </list>
+                    </field>
+
+                    <field name="equipment_count" invisible="1"/>
+
+                    <!-- ── STEP 2 : Bulk request data ───────────────────── -->
+                    <separator string="Step 2 — Bulk Request Data (applied to every selected record)"/>
+
+                    <group>
+                        <group>
+                            <field name="request_name"
+                                   placeholder="e.g. Preventive Maintenance — Q3 2025"
+                                   required="1"/>
+                            <field name="team_id"/>
+							<field name="request_type"/>
+                        </group>
+                        <group>
+                            <field name="scheduled_date"/>
+                            <field name="priority" widget="priority"/>
+                        </group>
+                    </group>
+
+                </sheet>
+
+                <footer>
+                    <button name="action_create_requests"
+                            type="object"
+                            string="Create Requests"
+                            class="btn btn-primary"
+                            invisible="equipment_count == 0"/>
+                    <button string="Cancel"
+                            class="btn btn-secondary"
+                            special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- ── Window action (used by server action below) ───────────────────── -->
+    <record id="action_maintenance_bulk_request_wizard" model="ir.actions.act_window">
+        <field name="name">Bulk Maintenance Request</field>
+        <field name="res_model">maintenance.bulk.request.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="maintenance_bulk_request_wizard_view_form"/>
+        <field name="target">new</field>
+    </record>
+
+    <!--
+        ── Server action bound to maintenance.equipment ──────────────────────
+        This makes "Bulk Maintenance Request" appear in the Action ▾ dropdown
+        on the Equipment list view — no fragile menu parent ID required.
+        To open: Maintenance ▸ Equipment ▸ Machines & Tools → select rows (optional)
+        → Action ▾ → Bulk Maintenance Request
+    -->
+    <record id="action_maintenance_bulk_request_server" model="ir.actions.server">
+        <field name="name">Bulk Maintenance Request</field>
+        <field name="model_id" ref="maintenance.model_maintenance_equipment"/>
+        <field name="binding_model_id" ref="maintenance.model_maintenance_equipment"/>
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="code">
+            action = {
+                'type': 'ir.actions.act_window',
+                'name': 'Bulk Maintenance Request',
+                'res_model': 'maintenance.bulk.request.wizard',
+                'view_mode': 'form',
+                'target': 'new',
+                'context': {
+                    'active_model': 'maintenance.equipment',
+                    'active_ids': records.ids,
+                    'default_equipment_ids': [(6, 0, records.ids)],
+                },
+            }
+        </field>
+    </record>
+
+</odoo>

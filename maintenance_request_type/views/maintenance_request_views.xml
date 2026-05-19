@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- FORM VIEW -->
+    <record id="view_maintenance_request_form_inherit_type"
+            model="ir.ui.view">
+
+        <field name="name">maintenance.request.form.request.type</field>
+        <field name="model">maintenance.request</field>
+        <field name="inherit_id"
+               ref="maintenance.hr_equipment_request_view_form"/>
+
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='maintenance_type']"
+                   position="after">
+
+                <field name="request_type"/>
+
+            </xpath>
+
+        </field>
+
+    </record>
+
+    <!-- TREE VIEW -->
+    <record id="view_maintenance_request_tree_inherit_type"
+            model="ir.ui.view">
+
+        <field name="name">maintenance.request.tree.request.type</field>
+        <field name="model">maintenance.request</field>
+        <field name="inherit_id"
+               ref="maintenance.hr_equipment_request_view_tree"/>
+
+        <field name="arch" type="xml">
+
+            <xpath expr="//list"
+                   position="inside">
+
+                <field name="request_type"/>
+
+            </xpath>
+
+        </field>
+
+    </record>
+
+   
+</odoo>

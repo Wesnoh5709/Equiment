@@ -208,3 +208,95 @@
         height: 260px;
     }
 }
+
+/* ── Section Labels ─────────────────────────────────────────────────────────── */
+.mnt_section_label {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1e2a3a;
+    padding: 4px 0 8px;
+    border-bottom: 2px solid #e5e8ef;
+    margin-bottom: 4px;
+}
+
+/* ── Unit badge next to chart title ────────────────────────────────────────── */
+.mnt_unit_badge {
+    display: inline-block;
+    margin-left: 8px;
+    padding: 2px 8px;
+    background: #eef1fe;
+    color: #4361ee;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    vertical-align: middle;
+}
+
+/* ── Hours / Days toggle ────────────────────────────────────────────────────── */
+.mnt_unit_toggle {
+    display: flex;
+    align-items: center;
+    background: #f0f2f7;
+    border-radius: 20px;
+    padding: 3px;
+    gap: 2px;
+}
+
+.mnt_toggle_option {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin: 0;
+}
+
+.mnt_toggle_option input[type="radio"] {
+    display: none;
+}
+
+.mnt_toggle_option span {
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 16px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #6b7280;
+    transition: background .2s, color .2s;
+    user-select: none;
+}
+
+.mnt_toggle_option input[type="radio"]:checked + span {
+    background: #4361ee;
+    color: #ffffff;
+    box-shadow: 0 1px 4px rgba(67,97,238,.35);
+}
+
+/* ── Export buttons ──────────────────────────────────────────────────────────── */
+.mnt_btn_export {
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    padding: 0.44rem 1.1rem;
+    border: none;
+    transition: background .2s, transform .15s, box-shadow .2s;
+    white-space: nowrap;
+}
+.mnt_btn_export:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,.15);
+}
+.mnt_btn_export:disabled {
+    opacity: .7;
+    cursor: not-allowed;
+}
+
+.mnt_btn_excel {
+    background: #1d6f42;
+    color: #fff;
+}
+.mnt_btn_excel:hover:not(:disabled) { background: #155734; color: #fff; }
+
+.mnt_btn_pdf {
+    background: #e63946;
+    color: #fff;
+}
+.mnt_btn_pdf:hover:not(:disabled) { background: #c1121f; color: #fff; }
