@@ -189,20 +189,6 @@ export class MaintenanceDashboard extends Component {
             const now  = new Date().toLocaleString();
 
             // ── Sheet 1: KPI Summary ──────────────────────────────────────
-            const kpiData = [
-                ["Maintenance Dashboard — KPI Summary"],
-                ["Exported:", now],
-                [],
-                ["KPI", "Value"],
-                ["Total Equipment",   this.state.total_equipment],
-                ["Total Maintenance", this.state.total_maintenance],
-                ["Maintenance Today", this.state.maintenance_today],
-                ["Overdue Requests",  this.state.overdue_requests],
-            ];
-            const wsKpi = XLSX.utils.aoa_to_sheet(kpiData);
-            wsKpi['!cols'] = [{ wch: 25 }, { wch: 15 }];
-            wsKpi['A1'].s = { font: { bold: true, sz: 14 } };
-            XLSX.utils.book_append_sheet(wb, wsKpi, "KPI Summary");
 
             // ── Sheet 2: Requests by Stage ────────────────────────────────
             const d = this.state._chartData;
